@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
+import { useDispatch } from 'react-redux';
+
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
 
 // import { Container } from './styles';
 
 export default function SignUp() {
-    function handleSubmit(data) {
-        console.log(data);
+    const dispatch = useDispatch();
+
+    function handleSubmit({ name, email, password }) {
+        dispatch(signUpRequest(name, email, password));
     }
 
     return (
@@ -19,8 +24,8 @@ export default function SignUp() {
                 <Input name="name" placeholder="Nome completo" />
                 <Input name="email" type="email" placeholder="Seu e-mail" />
                 <Input
-                    name="passowrd"
-                    type="passowrd"
+                    name="password"
+                    type="password"
                     placeholder="Sua senha"
                 />
 
