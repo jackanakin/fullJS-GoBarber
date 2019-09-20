@@ -9,6 +9,7 @@ export const Content = styled.div`
     height: 64px;
     max-width: 900px;
     margin: 0 auto;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 
@@ -28,7 +29,7 @@ export const Content = styled.div`
         }
     }
 
-    asside {
+    aside {
         display: flex;
         alignt-items: center;
     }
@@ -58,6 +59,7 @@ export const Profile = styled.div`
     }
     img {
         height: 32px;
+        width: 32px;
         border-radius: 50%;
     }
 `;
