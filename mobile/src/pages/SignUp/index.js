@@ -13,7 +13,8 @@ import {
 } from './styles';
 import Background from '../../components/Background';
 
-export default function SignIn({ navigation }) {
+export default function SignUp({ navigation }) {
+    const emailRef = useRef();
     const passwordRef = useRef();
 
     function handleSubmit() {}
@@ -25,12 +26,23 @@ export default function SignIn({ navigation }) {
 
                 <Form>
                     <FormInput
+                        icon="person-outline"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        placeholder="Nome completo"
+                        returnKeyType="next"
+                        ref={emailRef}
+                        onSubmitEditing={() => emailRef.current.focus()}
+                    />
+
+                    <FormInput
                         icon="mail-outline"
                         keyboardType="email-address"
                         autoCorrect={false}
-                        autoCapitalize="words"
+                        autoCapitalize="none"
                         placeholder="Digite seu e-mail"
                         returnKeyType="next"
+                        ref={emailRef}
                         onSubmitEditing={() => passwordRef.current.focus()}
                     />
 
@@ -46,8 +58,8 @@ export default function SignIn({ navigation }) {
                     <SubmitButton onPress={handleSubmit}>Acessar</SubmitButton>
                 </Form>
 
-                <SignLink onPress={() => navigation.navigate('SignUp')}>
-                    <SignLinkText>Criar conta</SignLinkText>
+                <SignLink onPress={() => navigation.navigate('SignIn')}>
+                    <SignLinkText>Já tenho conta</SignLinkText>
                 </SignLink>
             </Container>
         </Background>

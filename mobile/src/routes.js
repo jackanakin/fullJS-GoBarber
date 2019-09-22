@@ -1,11 +1,11 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import SignIn from './pages/SignIn';
-import SignOut from './pages/SignOut';
+import SignUp from './pages/SignUp';
 
 export default createAppContainer(
     createSwitchNavigator({
         SignIn,
-        SignOut,
+        SignUp,
     })
 );
