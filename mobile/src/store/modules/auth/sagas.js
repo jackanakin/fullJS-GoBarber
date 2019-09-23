@@ -12,12 +12,13 @@ export function* signIn({ payload }) {
         const response = yield call(api.post, 'sessions', {
             email,
             password,
+            provider: false,
         });
 
         const { token, user } = response.data;
 
-        if (!user.provider) {
-            Alert.alert('Erro no login', 'Usuário não é provider');
+        if (user.provider) {
+            Alert.alert('Erro no login', 'Usuário não é cliente');
             return;
         }
 
@@ -26,7 +27,7 @@ export function* signIn({ payload }) {
         yield put(signInSuccess(token, user));
         //history.push('/dashboard');
     } catch (err) {
-        console.log(err)
+        console.log(err);
         Alert.alert('Erro de autenticação', 'Houve erro no login');
         yield put(signInFailure());
     }
@@ -40,6 +41,7 @@ export function* signUp({ payload }) {
             name,
             email,
             password,
+            provider: false,
         });
 
         //history.push('/');

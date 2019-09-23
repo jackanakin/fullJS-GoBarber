@@ -11,15 +11,16 @@ import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { store, persistor } from './store';
-import Routes from './routes';
+import App from './App';
 
-export default function App() {
+import { store, persistor } from './store';
+
+export default function Main() {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor}>
+                <App />
                 <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-                <Routes />
             </PersistGate>
         </Provider>
     );
