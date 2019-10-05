@@ -7,19 +7,20 @@ import { updateProfileFailure, updateProfileSuccess } from './actions';
 
 export function* updateProfile({ payload }) {
     try {
-        const { name, email, avatar_id, ...rest } = payload.data;
+        const { name, email, ...rest } = payload.data;
 
         const profile = Object.assign(
-            { name, email, avatar_id },
+            { name, email },
             rest.oldPassword ? rest : {}
         );
 
         const response = yield call(api.put, 'users', profile);
 
         Alert.alert('Perfil atualizado!', 'Parabéns');
-
+        console.log("vai atualizar perfil agora")
         yield put(updateProfileSuccess(response.data));
     } catch (err) {
+        console.log(err)
         Alert.alert('Erro no perfil', 'Erro ao atualizar perfil!');
         yield put(updateProfileFailure());
     }

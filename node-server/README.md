@@ -1,9 +1,6 @@
-## ORM - Sequelize
-#Criar migration no Sequelize
-    yarn sequelize migration:create --name=create-users
+## API server developed in RocketSeat Bootcamp
 
-#Rodar migrate no Sequelize
-    yarn sequelize db:migrate
-#Desfazer migrate no Sequelize --dev APENAS
-    yarn sequelize db:migrate:undo
-    yarn sequelize db:migrate:undo:all
+1. git clone https://github.com/jackanakin/fullJS-GoBarber.git
+2. cd node-server
+3. yarn
+4. yarn dev
