@@ -13,14 +13,19 @@ import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 import AvailableController from './app/controllers/AvailableController';
 
+import validateUserStore from './app/validators/UserStore';
+import validateUserUpdate from './app/validators/UserUpdate';
+import validateSessionStore from './app/validators/SessionStore';
+import validateAppointmentStore from './app/validators/AppointmentStore';
+
 const routes = new Router();
 const upload = multer(multerConfig);
 
 /**
  * Public routes only
  */
-routes.post('/users', UserController.store);
-routes.post('/sessions', SessionController.store);
+routes.post('/users', validateUserStore, UserController.store);
+routes.post('/sessions', validateSessionStore, SessionController.store);
 
 /**
  * Authentication middleware
@@ -30,14 +35,18 @@ routes.use(authMiddleware);
 /**
  * From now on, only authenticated users routes
  */
-routes.put('/users', UserController.update);
+routes.put('/users', validateUserUpdate, UserController.update);
 
 routes.get('/providers', ProviderController.index);
 routes.get('/providers/:providerId/available', AvailableController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
-routes.post('/appointments', AppointmentController.store);
+routes.post(
+    '/appointments',
+    validateAppointmentStore,
+    AppointmentController.store
+);
 routes.get('/appointments', AppointmentController.index);
 routes.delete('/appointments/:id', AppointmentController.delete);
 
